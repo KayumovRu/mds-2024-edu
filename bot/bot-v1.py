@@ -2,7 +2,7 @@ import asyncio
 from aiogram import Bot, Dispatcher, F
 from aiogram.types import Message
 
-bot = Bot(token="8286955245:AAF4-p57MkJjg1vDlCvCEh5CNBGmQnHq_f4")
+bot = Bot(token="8286955245:AAF4-p57MkJjg1vDlCvCEh5CNBGmQnHq_f4") # так оставлять нельзя!
 dp = Dispatcher()
 
 @dp.message(F.text == "hello")
