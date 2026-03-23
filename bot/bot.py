@@ -68,11 +68,11 @@ async def start_handler(message: Message):
     from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
     
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="📝 Написать био", callback_data="write_bio")]
+        [InlineKeyboardButton(text="Написать био", callback_data="write_bio")]
     ])
     
     await message.answer(
-        f"Привет, {message.from_user.first_name}! 👋\n\nЯ эхобот с улучшенной версией.\n"
+        f"Привет, {message.from_user.first_name}! \n\nЯ эхобот с улучшенной версией.\n"
         f"Напиши мне сообщение, и я повторю его, или нажми кнопку ниже.",
         reply_markup=keyboard
     )
@@ -85,7 +85,7 @@ async def write_bio_callback(
     """Обработчик нажатия кнопки 'Написать био'"""
     logger.info(f"{callback.from_user.username} нажал кнопку 'Написать био'")
     
-    await callback.message.answer("✍️ Напиши своё био (не более 500 символов):")
+    await callback.message.answer("Напиши своё био (не более 500 символов):")
     await state.set_state(UserStates.waiting_for_bio)
     await callback.answer()
 
@@ -95,7 +95,7 @@ async def receive_bio(message: Message, state: FSMContext):
     bio = message.text
     
     if len(bio) > 500:
-        await message.answer("❌ Био слишком длинное! Максимум 500 символов. Попробуй ещё раз:")
+        await message.answer("Био слишком длинное! Максимум 500 символов. Попробуй ещё раз:")
         return
     
     save_bio(
@@ -104,7 +104,7 @@ async def receive_bio(message: Message, state: FSMContext):
         bio=bio
     )
     
-    await message.answer("✅ Спасибо! Твоё био сохранено.")
+    await message.answer("Спасибо! Твоё био сохранено.")
     await state.clear()
 
 @dp.message(F.text == "hello")
